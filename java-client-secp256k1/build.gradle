@@ -1,0 +1,30 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'maven-publish'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from(components["kotlin"])
+                groupId = 'com.github.dbchaincloud'
+                artifactId = 'secp256k1-java-lib'
+                version = '1.0.0'
+            }
+        }
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    api "org.web3j:core:4.8.7"
+    api 'com.github.dbchaincloud:dbchain-java-abstract-lib:v1.0.2'
+    // Android里的 secp256k1 被阉割了，需要引入
+    implementation group: 'com.madgag.spongycastle', name: 'prov', version: '1.58.0.0'
+}
