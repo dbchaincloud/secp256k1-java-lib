@@ -8,5 +8,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "java-secp256k1"
-include ':app'
 include ':java-client-secp256k1'
